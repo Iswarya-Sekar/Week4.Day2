@@ -1,5 +1,7 @@
 package week4.day2;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -40,19 +42,36 @@ public class LearnTablesERail {
 		int rCount = trains.size();
 		System.out.println("No of trains listed:\t" +rCount);
 		
+		List<String> tNames = new ArrayList<String>();
+		
 		System.out.println("***********All Train Names*************");
 		System.out.println("  S. No\t\tTrain Name");
+		
 		
 		for(int i=0; i<rCount; i++) {
 			WebElement eachRow = trains.get(i);
 			List<WebElement> allValues = eachRow.findElements(By.tagName("td"));
 			String name = allValues.get(1).getText();
-			
+			tNames.add(name);
 			int c = i+1;
 			System.out.println("  " + c +"\t\t   " +name);
 			
-			
 		}
+		
+		Collections.sort(tNames);
+		System.out.println("");
+		
+		System.out.println("***********Sorted Train Names*************");
+		System.out.println("  S. No\t\tTrain Name");
+		
+		for (String string : tNames) {
+			int i = tNames.indexOf(string);
+			i++;
+			System.out.println("  " +i+ "\t\t" +string);
+		}
+		
+		
+		driver.quit();
 
 	}
 
